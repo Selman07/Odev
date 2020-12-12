@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Kurs Planlaması</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script src="https://unpkg.com/vue@next"></script>
+
+  </head>
+  <body>
+    <header>Kurs Planlaması</header>
+    <div id="app" class="container">
+      <div class="course--planner-app--container">
+        <div class="card">
+          <div class="user--action--container">
+            <div class="form-group">
+              <label>Kursun Adı</label>
+              <input type="text" v-model="inputValue" placeholder="E.g. Vue.Js" />
+              <p v-if="uyari1" style="margin-top: 20px;">Alanı boş bırakma</p>
+              <p v-if="uyari2" style="margin-top: 20px;">Önceden kaydettin</p>
+            </div>
+            <button class="btn-primary" @click="newCourse()">Kurs Ekle</button>
+          </div>
+        </div>
+        <div class="card card-light mt-20">
+          <h3>Aktif Kurslarım</h3>
+          <ul class="list mt-20">
+            <li :class="{'bg-danger': !course.status}" v-for="course in courses" class="course-item list-item bg-success">
+              <span>{{course.title}}</span>
+              <input v-model= "course.status" type="checkbox" />
+            </li>
+            
+          </ul>
+        </div>
+        <div class="mt-10">
+          <small>İzlenecek {{courses.length}} adet kursunuz var.</small>
+        </div>
+      </div>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
